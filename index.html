@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PIANO GAME</title>
+  <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+  <div class="backGround">
+    
+    <div class="glassScreen">
+      <h1>PIANO GAME</h1>
+      <div class="keyboard">
+        <!-- First Row -->
+        <div class="row">
+          <div id="q" class="key" data-sound="q">Q</div>
+          <div id="w" class="key" data-sound="w">W</div>
+          <div id="e" class="key" data-sound="e">E</div>
+          <div id="r" class="key" data-sound="r">R</div>
+          <div id="t" class="key" data-sound="t">T</div>
+          <div id="y" class="key" data-sound="y">Y</div>
+          <div id="u" class="key" data-sound="u">U</div>
+          <div id="i" class="key" data-sound="i">I</div>
+          <div id="o" class="key" data-sound="o">O</div>
+          <div id="p" class="key" data-sound="p">P</div>
+        </div>
+  
+        <!-- Second Row (Centered) -->
+        <div class="row second">
+          <div id="a" class="key" data-sound="a">A</div>
+          <div id="s" class="key" data-sound="s">S</div>
+          <div id="d" class="key" data-sound="d">D</div>
+          <div id="f" class="key" data-sound="f">F</div>
+          <div id="g" class="key" data-sound="g">G</div>
+          <div id="h" class="key" data-sound="h">H</div>
+          <div id="j" class="key" data-sound="j">J</div>
+          <div id="k" class="key" data-sound="k">K</div>
+          <div id="l" class="key" data-sound="l">L</div>
+        </div>
+  
+        <!-- Third Row -->
+        <div class="row third">
+          <div id="z" class="key" data-sound="z">Z</div>
+          <div id="x" class="key" data-sound="x">X</div>
+          <div id="c" class="key" data-sound="c">C</div>
+          <div id="v" class="key" data-sound="v">V</div>
+          <div id="b" class="key" data-sound="b">B</div>
+          <div id="n" class="key" data-sound="n">N</div>
+          <div id="m" class="key" data-sound="m">M</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<audio data-key="q" src="sounds/a6-102820.mp3"></audio>
+<audio data-key="w" src="sounds/a6-82015.mp3"></audio>
+<audio data-key="e" src="sounds/b6-82017.mp3"></audio>
+<audio data-key="r" src="sounds/bb3_piano_note-98736 (1).mp3"></audio>
+<audio data-key="t" src="sounds/c6-102822.mp3"></audio>
+<audio data-key="y" src="sounds/c6-82019.mp3"></audio>
+<audio data-key="u" src="sounds/d6-82018.mp3"></audio>
+<audio data-key="i" src="sounds/d6-82020.mp3"></audio>
+<audio data-key="o" src="sounds/do-80236.mp3"></audio>
+<audio data-key="p" src="sounds/e6-82016.mp3"></audio>
+<audio data-key="a" src="sounds/e6-82016.mp3"></audio>
+<audio data-key="s" src="sounds/f6-102819.mp3"></audio>
+<audio data-key="d" src="sounds/fa-78409.mp3"></audio>
+<audio data-key="f" src="sounds/g6-82013.mp3"></audio>
+<audio data-key="g" src="sounds/g6-82014.mp3"></audio>
+<audio data-key="h" src="sounds/metal-piano-note-wobbly-reverb-36529.mp3"></audio>
+<audio data-key="j" src="sounds/metallophone-e-note-105649.mp3"></audio>
+<audio data-key="k" src="sounds/music-box-note-14514.mp3"></audio>
+<audio data-key="l" src="sounds/piano-g-6200.mp3"></audio>
+<audio data-key="z" src="sounds/027574_f-bass-note-guitar-string-77385.mp3"></audio>
+<audio data-key="x" src="sounds/1-note-piano-104171.mp3"></audio>
+<audio data-key="c" src="sounds/toy-piano-87353.mp3"></audio>
+<audio data-key="v" src="sounds/sol-101774.mp3"></audio>
+<audio data-key="b" src="sounds/si-80238.mp3"></audio>
+<audio data-key="n" src="sounds/re-78500.mp3"></audio>
+<audio data-key="m" src="sounds/piano-slam-97095.mp3"></audio>
+
+  
+  
+</body>
+<script>
+  document.addEventListener('keydown' , function(e){
+    const audio = document.querySelector(`audio[data-key=${e.key}]`)
+    const key = document.querySelector(`.key[data-sound=${e.key}]`)
+    console.log(key);
+    if(!audio) return;
+    audio.currentTime = 0;
+    audio.play()
+    if (key) {
+        key.classList.add("playing");
+        setTimeout(() => key.classList.remove("playing"), 200);
+    }
+  })
+
+  document.querySelectorAll(".key").forEach((key) => {
+    key.addEventListener("click", function () {
+        const sound = key.getAttribute("data-sound");
+        const audio = document.querySelector(`audio[data-key="${sound}"]`);
+        if (!audio) return;
+
+        audio.currentTime = 0;
+        audio.play();
+
+        key.classList.add("playing");
+        setTimeout(() => key.classList.remove("playing"), 200);
+    });
+});
+  
+</script>
+</html>
